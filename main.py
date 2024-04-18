@@ -1,5 +1,14 @@
 import pygame
 
+# Function to calculate Mandelbrot set
+def calculate_mandelbrot(c, max_iter=100):
+    z = c
+    for n in range(max_iter):
+        if abs(z) > 2:
+            return n
+        z = z*z + c
+    return max_iter
+
 # Pygame setup
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
