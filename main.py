@@ -1,4 +1,5 @@
 import pygame
+import numpy as np
 
 # Function to calculate Mandelbrot set
 def calculate_mandelbrot(c, max_iter=100):
@@ -8,6 +9,16 @@ def calculate_mandelbrot(c, max_iter=100):
             return n
         z = z*z + c
     return max_iter
+
+# Function to generate Mandelbrot matrix
+def generate_mandelbrot_matrix():
+    mandelbrot_matrix = np.zeros((800, 800))
+    for x in range(800):
+        for y in range(800):
+            real = (x - 400) / 400
+            imag = (y - 400) / 400
+            mandelbrot_matrix[y, x] = calculate_mandelbrot(complex(real, imag))
+    return mandelbrot_matrix
 
 # Pygame setup
 pygame.init()
