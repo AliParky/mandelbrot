@@ -20,6 +20,10 @@ def generate_mandelbrot_matrix():
             mandelbrot_matrix[y, x] = calculate_mandelbrot(complex(real, imag))
     return mandelbrot_matrix
 
+# Function to color a pixel
+def color_pixel(iteration):
+    return (iteration, iteration, iteration)
+
 # Pygame setup
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
