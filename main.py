@@ -24,13 +24,13 @@ def generate_mandelbrot_matrix():
 def color_pixel(iteration):
     return (iteration, iteration, iteration)
 
-# Function to draw Mandelbrot set on the screen
-def draw_mandelbrot(mandelbrot_matrix):
+# Function to draw Mandelbrot set on a surface
+def draw_mandelbrot(mandelbrot_matrix, surface):
     for x in range(800):
         for y in range(800):
             iteration = mandelbrot_matrix[y, x]
             color = color_pixel(iteration)
-            pygame.draw.rect(screen, color, pygame.Rect(x, y, 1, 1))
+            surface.set_at((x, y), color)
 
 # Pygame setup
 pygame.init()
