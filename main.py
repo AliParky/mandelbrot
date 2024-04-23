@@ -36,6 +36,13 @@ def draw_mandelbrot(mandelbrot_matrix, surface):
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
 
+# Generate Mandelbrot matrix
+mandelbrot_matrix = generate_mandelbrot_matrix()
+
+# Create a new surface and draw the Mandelbrot set on it
+mandelbrot_surface = pygame.Surface((800, 800))
+draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
+
 # Main loop
 running = True
 while running:
