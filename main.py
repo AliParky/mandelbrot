@@ -51,6 +51,7 @@ while running:
             running = False
 
     screen.fill((0, 0, 0))  # Clear the screen
+    screen.blit(mandelbrot_surface, (0, 0))
     pygame.display.flip()
 
 pygame.quit()
