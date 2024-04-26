@@ -14,12 +14,12 @@ def calculate_mandelbrot(c, max_iter=100):
     return max_iter
 
 # Function to generate Mandelbrot matrix
-def generate_mandelbrot_matrix():
+def generate_mandelbrot_matrix(center_x, center_y):
     mandelbrot_matrix = np.zeros((WIDTH, HEIGHT))
     for x in range(WIDTH):
         for y in range(HEIGHT):
-            real = (x - WIDTH // 2) / (WIDTH // 2)
-            imag = (y - HEIGHT // 2) / (HEIGHT // 2)
+            real = (x - WIDTH // 2) / (WIDTH // 2) + center_x
+            imag = (y - HEIGHT // 2) / (HEIGHT // 2) + center_y
             mandelbrot_matrix[y, x] = calculate_mandelbrot(complex(real, imag))
     return mandelbrot_matrix
 
