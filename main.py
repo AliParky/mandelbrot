@@ -39,8 +39,11 @@ def draw_mandelbrot(mandelbrot_matrix, surface):
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
+# Define center coordinates
+center_x, center_y = 0.0, 0.0
+
 # Generate Mandelbrot matrix
-mandelbrot_matrix = generate_mandelbrot_matrix()
+mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y)
 
 # Create a new surface and draw the Mandelbrot set on it
 mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
