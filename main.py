@@ -58,6 +58,13 @@ while running:
 
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
+
+    # Get the current mouse position
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    # Draw a square around the mouse position
+    pygame.draw.rect(screen, (255, 255, 0), (mouse_x - 50, mouse_y - 50, 100, 100), 2)
+
     pygame.display.flip()
 
 pygame.quit()
