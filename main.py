@@ -35,6 +35,12 @@ def draw_mandelbrot(mandelbrot_matrix, surface):
             color = color_pixel(iteration)
             surface.set_at((x, y), color)
 
+# Function to convert screen coordinates to Mandelbrot set coordinates
+def screen_to_mandelbrot(x, y, center_x, center_y):
+    real = ((x - WIDTH // 2) / (WIDTH // 2)) + center_x
+    imag = ((y - HEIGHT // 2) / (HEIGHT // 2)) + center_y
+    return real, imag
+
 # Pygame setup
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
