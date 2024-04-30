@@ -14,12 +14,12 @@ def calculate_mandelbrot(c, max_iter=100):
     return max_iter
 
 # Function to generate Mandelbrot matrix
-def generate_mandelbrot_matrix(center_x, center_y):
+def generate_mandelbrot_matrix(center_x, center_y, zoom):
     mandelbrot_matrix = np.zeros((WIDTH, HEIGHT))
     for x in range(WIDTH):
         for y in range(HEIGHT):
-            real = (x - WIDTH // 2) / (WIDTH // 2) + center_x
-            imag = (y - HEIGHT // 2) / (HEIGHT // 2) + center_y
+            real = (x - WIDTH // 2) / (WIDTH // 2) * zoom + center_x
+            imag = (y - HEIGHT // 2) / (HEIGHT // 2) * zoom + center_y
             mandelbrot_matrix[y, x] = calculate_mandelbrot(complex(real, imag))
     return mandelbrot_matrix
 
@@ -48,8 +48,11 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 # Define center coordinates
 center_x, center_y = 0.0, 0.0
 
+# Define zoom level
+zoom = 1.0
+
 # Generate Mandelbrot matrix
-mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y)
+mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
 
 # Create a new surface and draw the Mandelbrot set on it
 mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
