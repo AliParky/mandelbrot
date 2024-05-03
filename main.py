@@ -51,6 +51,9 @@ center_x, center_y = 0.0, 0.0
 # Define zoom level
 zoom = 1.0
 
+# Define zoom rectangle size
+zoom_rect_size = 100
+
 # Generate Mandelbrot matrix
 mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
 
@@ -78,7 +81,7 @@ while running:
     mouse_x, mouse_y = pygame.mouse.get_pos()
 
     # Draw a square around the mouse position
-    pygame.draw.rect(screen, (255, 255, 0), (mouse_x - 50, mouse_y - 50, 100, 100), 2)
+    pygame.draw.rect(screen, (255, 255, 0), (mouse_x - zoom_rect_size // 2, mouse_y - zoom_rect_size // 2, zoom_rect_size, zoom_rect_size), 2)
 
     pygame.display.flip()
 
