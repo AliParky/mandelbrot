@@ -68,11 +68,16 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_x, mouse_y = pygame.mouse.get_pos()
-            center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
-            mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
-            mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
-            draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
+            if event.button == 1:  # Left click
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
+                mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
+                mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
+                draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
+            elif event.button == 4:  # Scroll up
+                zoom_rect_size += 10
+            elif event.button == 5:  # Scroll down
+                zoom_rect_size -= 10
 
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
