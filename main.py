@@ -75,9 +75,9 @@ while running:
                 mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
                 draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
             elif event.button == 4:  # Scroll up
-                zoom_rect_size += 10
+                zoom_rect_size *= 1.1
             elif event.button == 5:  # Scroll down
-                zoom_rect_size -= 10
+                zoom_rect_size /= 1.1
 
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
