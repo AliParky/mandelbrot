@@ -71,6 +71,7 @@ while running:
             if event.button == 1:  # Left click
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
+                zoom *= zoom_rect_size / WIDTH
                 mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
                 mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
                 draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
