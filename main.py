@@ -49,7 +49,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 center_x, center_y = 0.0, 0.0
 
 # Define zoom level
-zoom = 1.0
+zoom = 2
 
 # Define zoom rectangle size
 zoom_rect_size = 100
