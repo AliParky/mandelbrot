@@ -24,8 +24,9 @@ def generate_mandelbrot_matrix(center_x, center_y, zoom):
     return mandelbrot_matrix
 
 # Function to color a pixel
-def color_pixel(iteration):
-    return (iteration, iteration, iteration)
+def color_pixel(iteration, max_iter=100):
+    scaled_value = int((iteration / max_iter) * 255)
+    return (scaled_value, scaled_value, scaled_value)
 
 # Function to draw Mandelbrot set on a surface
 def draw_mandelbrot(mandelbrot_matrix, surface):
