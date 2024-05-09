@@ -14,13 +14,14 @@ def calculate_mandelbrot(c, max_iter=100):
     return max_iter
 
 # Function to generate Mandelbrot matrix
-def generate_mandelbrot_matrix(center_x, center_y, zoom):
+def generate_mandelbrot_matrix(center_x, center_y, zoom, resolution=WIDTH):
     mandelbrot_matrix = np.zeros((WIDTH, HEIGHT))
-    for x in range(WIDTH):
-        for y in range(HEIGHT):
+    step = WIDTH // resolution
+    for x in range(0, WIDTH, step):
+        for y in range(0, HEIGHT, step):
             real = (x - WIDTH // 2) / (WIDTH // 2) * zoom + center_x
             imag = (y - HEIGHT // 2) / (HEIGHT // 2) * zoom + center_y
-            mandelbrot_matrix[y, x] = calculate_mandelbrot(complex(real, imag))
+            mandelbrot_matrix[y:y+step, x:x+step] = calculate_mandelbrot(complex(real, imag))
     return mandelbrot_matrix
 
 # Function to color a pixel
