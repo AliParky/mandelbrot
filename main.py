@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+import threading
 
 # Define resolution constants
 WIDTH, HEIGHT = 800, 800
@@ -81,7 +82,10 @@ while running:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
                 zoom *= zoom_rect_size / WIDTH
-                mandelbrot_surface = update_mandelbrot(center_x, center_y, zoom)
+                thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom))
+                thread.start()
+                thread.join()
+                mandelbrot_surface = thread.result
             elif event.button == 4:  # Scroll up
                 zoom_rect_size *= 1.1
             elif event.button == 5:  # Scroll down
