@@ -44,12 +44,15 @@ def screen_to_mandelbrot(x, y, center_x, center_y, zoom):
     imag = ((y - HEIGHT // 2) / (HEIGHT // 2) * zoom) + center_y
     return real, imag
 
+# Global variable to store the result of the update_mandelbrot function
+mandelbrot_surface_result = None
+
 # Function to update Mandelbrot set with new center and zoom
 def update_mandelbrot(center_x, center_y, zoom):
+    global mandelbrot_surface_result
     mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
-    mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
-    draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
-    return mandelbrot_surface
+    mandelbrot_surface_result = pygame.Surface((WIDTH, HEIGHT))
+    draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface_result)
 
 # Pygame setup
 pygame.init()
@@ -85,7 +88,7 @@ while running:
                 thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom))
                 thread.start()
                 thread.join()
-                mandelbrot_surface = thread.result
+                mandelbrot_surface = mandelbrot_surface_result
             elif event.button == 4:  # Scroll up
                 zoom_rect_size *= 1.1
             elif event.button == 5:  # Scroll down
