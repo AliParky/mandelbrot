@@ -74,6 +74,9 @@ mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
 mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
 draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
 
+# Initialize thread to None
+thread = None
+
 # Main loop
 running = True
 while running:
@@ -87,13 +90,15 @@ while running:
                 zoom *= zoom_rect_size / WIDTH
                 thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom))
                 thread.start()
-                thread.join()
-                mandelbrot_surface = mandelbrot_surface_result
             elif event.button == 4:  # Scroll up
                 zoom_rect_size *= 1.1
             elif event.button == 5:  # Scroll down
                 zoom_rect_size /= 1.1
 
+    # Check if the update thread has finished
+    if thread is not None and not thread.is_alive():
+        mandelbrot_surface = mandelbrot_surface_result
+    
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
 
