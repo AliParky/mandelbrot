@@ -48,9 +48,9 @@ def screen_to_mandelbrot(x, y, center_x, center_y, zoom):
 mandelbrot_surface_result = None
 
 # Function to update Mandelbrot set with new center and zoom
-def update_mandelbrot(center_x, center_y, zoom):
+def update_mandelbrot(center_x, center_y, zoom, resolution=WIDTH):
     global mandelbrot_surface_result
-    mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
+    mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom, resolution)
     mandelbrot_surface_result = pygame.Surface((WIDTH, HEIGHT))
     draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface_result)
 
