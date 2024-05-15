@@ -64,6 +64,9 @@ center_x, center_y = 0.0, 0.0
 # Define zoom level
 zoom = 2
 
+# Define resolution
+resolution = WIDTH
+
 # Define zoom rectangle size
 zoom_rect_size = 100
 
@@ -88,7 +91,8 @@ while running:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
                 zoom *= zoom_rect_size / WIDTH
-                thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom))
+                resolution = WIDTH // 16
+                thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
                 thread.start()
             elif event.button == 4:  # Scroll up
                 zoom_rect_size *= 1.1
