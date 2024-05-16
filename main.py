@@ -102,6 +102,10 @@ while running:
     # Check if the update thread has finished
     if thread is not None and not thread.is_alive():
         mandelbrot_surface = mandelbrot_surface_result
+        if resolution < WIDTH:
+            resolution *= 2
+            thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
+            thread.start()
     
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
