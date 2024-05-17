@@ -103,7 +103,7 @@ while running:
     if thread is not None and not thread.is_alive():
         mandelbrot_surface = mandelbrot_surface_result
         if resolution < WIDTH:
-            resolution *= 2
+            resolution = min(resolution * 2, WIDTH)
             thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
             thread.start()
     
