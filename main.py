@@ -45,14 +45,14 @@ def screen_to_mandelbrot(x, y, center_x, center_y, zoom):
     return real, imag
 
 # Global variable to store the result of the update_mandelbrot function
-mandelbrot_surface_result = None
+mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
 
 # Function to update Mandelbrot set with new center and zoom
 def update_mandelbrot(center_x, center_y, zoom, resolution=WIDTH):
-    global mandelbrot_surface_result
+    global mandelbrot_surface
     mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom, resolution)
-    mandelbrot_surface_result = pygame.Surface((WIDTH, HEIGHT))
-    draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface_result)
+    mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
+    draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
 
 # Pygame setup
 pygame.init()
@@ -72,9 +72,6 @@ zoom_rect_size = 100
 
 # Generate Mandelbrot matrix
 mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
-
-# Create a new surface and draw the Mandelbrot set on it
-mandelbrot_surface = pygame.Surface((WIDTH, HEIGHT))
 draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
 
 # Initialize thread to None
@@ -100,12 +97,10 @@ while running:
                 zoom_rect_size /= 1.1
 
     # Check if the update thread has finished
-    if thread is not None and not thread.is_alive():
-        mandelbrot_surface = mandelbrot_surface_result
-        if resolution < WIDTH:
-            resolution = min(resolution * 2, WIDTH)
-            thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
-            thread.start()
+    if thread is not None and not thread.is_alive() and resolution < WIDTH:
+        resolution = min(resolution * 2, WIDTH)
+        thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
+        thread.start()
     
     screen.fill((0, 0, 0))  # Clear the screen
     screen.blit(mandelbrot_surface, (0, 0))
