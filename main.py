@@ -70,12 +70,9 @@ resolution = WIDTH
 # Define zoom rectangle size
 zoom_rect_size = 100
 
-# Generate Mandelbrot matrix
-mandelbrot_matrix = generate_mandelbrot_matrix(center_x, center_y, zoom)
-draw_mandelbrot(mandelbrot_matrix, mandelbrot_surface)
-
-# Initialize thread to None
-thread = None
+# Start the update thread
+thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
+thread.start()
 
 # Main loop
 running = True
@@ -97,7 +94,7 @@ while running:
                 zoom_rect_size /= 1.1
 
     # Check if the update thread has finished
-    if thread is not None and not thread.is_alive() and resolution < WIDTH:
+    if not thread.is_alive() and resolution < WIDTH:
         resolution = min(resolution * 2, WIDTH)
         thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
         thread.start()
