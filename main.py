@@ -65,7 +65,7 @@ center_x, center_y = 0.0, 0.0
 zoom = 2
 
 # Define resolution
-resolution = WIDTH
+resolution = WIDTH // 16
 
 # Define zoom rectangle size
 zoom_rect_size = 100
