@@ -8,16 +8,24 @@ This Python script provides a real-time interactive visualization of the Mandelb
 
 2. **Install Dependencies**: This project requires Pygame and NumPy. Install them using pip:
 
-pip install pygame numpy
+    ```bash
+    pip install pygame numpy
+    ```
 
 3. **Clone the Repository**: Clone this repository to your local machine:
 
-git clone https://github.com/AliParky/mandelbrot
+    ```bash
+    git clone https://github.com/AliParky/mandelbrot
+    ```
 
 4. **Navigate to the Directory**: Change your current directory to the cloned repository:
 
-cd mandelbrot
+    ```bash
+    cd mandelbrot
+    ```
 
 5. **Run the Script**: Use the following command:
 
-python main.py
+    ```bash
+    python main.py
+    ```
