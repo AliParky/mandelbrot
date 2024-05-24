@@ -29,3 +29,13 @@ This Python script provides a real-time interactive visualization of the Mandelb
     ```bash
     python main.py
     ```
+
+## How to Use
+
+Once the script is running, you can interact with the Mandelbrot set visualization:
+
+- **Zoom**: Left-click on an area to zoom in. The zoom area is represented by a square around the mouse cursor.
+
+- **Adjust Zoom Area**: Scroll up to increase the size of the zoom area, and scroll down to decrease it.
+
+- **Quit**: Close the window to quit the application.
