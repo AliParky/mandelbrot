@@ -14,8 +14,15 @@ def calculate_mandelbrot(c, max_iter=100):
         z = z*z + c
     return max_iter
 
+# Cache for Mandelbrot matrices
+cache = {}
+
 # Function to generate Mandelbrot matrix
 def generate_mandelbrot_matrix(center_x, center_y, zoom, resolution=WIDTH):
+    cache_key = (center_x, center_y, zoom, resolution)
+    if cache_key in cache:
+        return cache[cache_key]
+    
     mandelbrot_matrix = np.zeros((WIDTH, HEIGHT))
     step = WIDTH // resolution
     for x in range(0, WIDTH, step):
@@ -23,6 +30,8 @@ def generate_mandelbrot_matrix(center_x, center_y, zoom, resolution=WIDTH):
             real = (x - WIDTH // 2) / (WIDTH // 2) * zoom + center_x
             imag = (y - HEIGHT // 2) / (HEIGHT // 2) * zoom + center_y
             mandelbrot_matrix[y:y+step, x:x+step] = calculate_mandelbrot(complex(real, imag))
+    
+    cache[cache_key] = mandelbrot_matrix
     return mandelbrot_matrix
 
 # Function to color a pixel
