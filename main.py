@@ -79,6 +79,9 @@ resolution = WIDTH // 16
 # Define zoom rectangle size
 zoom_rect_size = 100
 
+# Define zoom stack
+zoom_stack = []
+
 # Start the update thread
 thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
 thread.start()
@@ -95,6 +98,7 @@ while running:
                 center_x, center_y = screen_to_mandelbrot(mouse_x, mouse_y, center_x, center_y, zoom)
                 zoom *= zoom_rect_size / WIDTH
                 resolution = WIDTH // 16
+                zoom_stack.append((center_x, center_y, zoom, resolution))
                 thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
                 thread.start()
             elif event.button == 4:  # Scroll up
