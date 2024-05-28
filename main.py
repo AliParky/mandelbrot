@@ -103,6 +103,8 @@ while running:
                 thread.start()
             elif event.button == 3:  # Right click
                 center_x, center_y, zoom, resolution = zoom_stack.pop()
+                thread = threading.Thread(target=update_mandelbrot, args=(center_x, center_y, zoom, resolution))
+                thread.start()
             elif event.button == 4:  # Scroll up
                 zoom_rect_size *= 1.1
             elif event.button == 5:  # Scroll down
