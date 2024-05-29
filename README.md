@@ -36,6 +36,8 @@ Once the script is running, you can interact with the Mandelbrot set visualizati
 
 - **Zoom**: Left-click on an area to zoom in. The zoom area is represented by a square around the mouse cursor.
 
+- **Zoom Out**: Right-click to zoom out. The application will return to the previous zoom level and center coordinates.
+
 - **Adjust Zoom Area**: Scroll up to increase the size of the zoom area, and scroll down to decrease it.
 
 - **Quit**: Close the window to quit the application.
